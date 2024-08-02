@@ -1,0 +1,25 @@
+.container
+{
+    display:flex;
+}
+  
+  .content {
+    display:flex;
+    flex-wrap:wrap;
+    gap:2px;
+    
+  }
+  .child
+  {
+    width:400px;
+    height:auto;
+    background-color: darkgray;
+  }
+  .time
+  {
+    color:red;
+    float:right;
+  }
+  
+  
+  
