@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 import  styles from '@/styles/index.module.css'
 export default function Home() {
   const [data, setData] = useState([]);
@@ -35,7 +36,7 @@ export default function Home() {
       {data.map((res) => (
         <div key={res.product_id} className="bg-slate-200 p-4 text-center cursor-pointer rounded-lg object-contain h-auto hover:bg-slate-600 hover:text-white" onClick={()=>showProduct(res.product_id)}>
          
-          <img src={res.image_link} alt={res.description} className="w-80"/>
+          <Image src={res.image_link} alt={res.description} width={500} height={300}/>
             <p>Name:{res.name},name</p>
           <p>{res.price}</p>
         
