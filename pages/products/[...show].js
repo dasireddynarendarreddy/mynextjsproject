@@ -1,8 +1,7 @@
-import { useRouter } from "next/router"
+
 function invalidUrl()
 {
-    const route=useRouter();
-    console.log(route.pathname);
+    
 
     return(
         <div>
