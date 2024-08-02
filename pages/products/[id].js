@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Image from 'next/image';
 function Product() {
   const [data, setData] = useState([]);
   const router = useRouter();
@@ -30,7 +30,7 @@ function Product() {
         {data.map((res) => (
           <div key={res.id} className="flex items-center justify-center h-screen">
             <div className="text-center">
-              <img src={res.image_link} className="w-96 h-96" alt="Your Image" />
+              <Image src={res.image_link} alt="Your Image" width={500} height={300} />
               <h3 className="font-extrabold">Name: {res.name}</h3>
               <br />
               <span>Category:</span>
