@@ -39,7 +39,7 @@ export default function Home() {
           <Image src={res.image_link} alt={res.description} width={500} height={300}/>
             <p>Name:{res.name},name</p>
           <p>{res.price}</p>
-        
+            <button className="bg-yellow-400 rounded p-2">AddToCart</button>
         </div>
       ))}
     </div>
