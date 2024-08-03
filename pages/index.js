@@ -14,7 +14,7 @@ function Main()
         <span className="hover:text-yellow-400"><Link href="/Mycart">products</Link></span>
         <span className="hover:text-yellow-400"><Link href="">mycart</Link></span>
       </div>
-      <div className="bg-hero h-screen bg-center w-full bg-cover bg-no-repeat flex items-center justify-center text-center">
+      <div className="bg-hero h-screen bg-center w-full bg-cover bg-no-repeat items-center  justify-center text-center">
   <div className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-mono text-slate-600">
     Walk with Confidence: Discover footwear that combines cutting-edge design with unparalleled comfort, making every step a statement
   </div>
