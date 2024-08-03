@@ -31,6 +31,9 @@ export default function Home() {
   
 
   return (
+    <div className="p-8">
+          <button onClick={preivous} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
+
     <div className="flex flex-wrap gap-14 p-4" >
         
       {data.map((res) => (
@@ -48,6 +51,7 @@ export default function Home() {
         </div>
         
       ))}
+    </div>
     </div>
   );
 }

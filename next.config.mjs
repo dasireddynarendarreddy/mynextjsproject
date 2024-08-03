@@ -3,6 +3,7 @@
 
 
 const nextConfig = {
+ reactStrictMode: false,
    images:{
     remotePatterns:[
       {
@@ -10,6 +11,7 @@ const nextConfig = {
       hostname:"**",
       },
     ],
+    domains: ['cdn-tp2.mozu.com'],
    },
 };
 

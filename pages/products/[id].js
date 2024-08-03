@@ -26,7 +26,8 @@ function Product() {
   return (
     <>
       <div className="bg-gray-200">
-      <button onClick={previous} className="mt-4 p-2 bg-blue-500 rounded-lg text-white hover:bg-blue-300">previous</button>
+      <button onClick={previous} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
+
         {data.map((res) => (
           <div key={res.id} className="flex items-center justify-center h-screen">
             <div className="text-center">
