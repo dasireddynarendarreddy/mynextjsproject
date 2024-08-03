@@ -6,3 +6,4 @@ function Mycart()
         </>
     )
 }
+export default Mycart
