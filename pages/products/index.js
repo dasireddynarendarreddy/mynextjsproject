@@ -43,7 +43,7 @@ export default function Home() {
            
         </div>
         <div>
-        <button className="bg-yellow-400 rounded p-2 cursor-pointer">AddToCart</button>
+        <button className="bg-yellow-400 rounded p-2 cursor-pointer" key={res.product_id}>AddToCart</button>
         </div>
         </div>
         
