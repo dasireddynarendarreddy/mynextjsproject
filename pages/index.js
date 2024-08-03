@@ -8,7 +8,10 @@ function Main()
 
     return(
         <>
-           <h1>Main page</h1>
+           <div className="bg-slate-500 flex gap-2 p-4">
+               <span><a href="">products</a></span>
+               <span><a href="">mycart</a></span>
+           </div>
              <button className="bg-blue-600 rounded p-2" onClick={viewProducts}>ViewProducts</button>
         </>
     )
