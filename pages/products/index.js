@@ -34,7 +34,7 @@ export default function Home() {
     <div className="flex flex-wrap gap-14 p-4" >
         
       {data.map((res) => (
-        <div key={product_id}>
+        <div key={res.product_id}>
         <div key={res.product_id} className="bg-slate-200 p-4 text-center cursor-pointer rounded-lg object-contain h-auto hover:bg-slate-600 hover:text-white" onClick={()=>showProduct(res.product_id)}>
          
           <Image src={res.image_link} alt={res.description} width={500} height={300}/>
