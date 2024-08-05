@@ -11,7 +11,7 @@ const nextConfig = {
       hostname:"**",
       },
     ],
-    domains: ['cdn-tp2.mozu.com'],
+    domains: ['cdn-tp2.mozu.com']
    },
 };
 
