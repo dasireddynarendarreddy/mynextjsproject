@@ -11,8 +11,8 @@ function Main()
 <div className="p-4 items-center justify-center">
 
       <div className="bg-slate-500 flex gap-2 p-4  ">
-        <span className="hover:text-yellow-400"><Link href="/Mycart">products</Link></span>
-        <span className="hover:text-yellow-400"><Link href="">mycart</Link></span>
+        
+        <span className="hover:text-yellow-400"><Link href="/Mycart">mycart</Link></span>
       </div>
       <div className="bg-hero h-screen bg-center w-full bg-cover bg-no-repeat items-center  justify-center text-center">
   <div className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-mono text-slate-600">

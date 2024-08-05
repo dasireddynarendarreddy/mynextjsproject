@@ -21,7 +21,21 @@ function Product() {
 
   const previous = () => {
     router.push("/products");
-  };
+  };const addToCart = async (product) => {
+    try {
+      const res = await fetch("/api/server", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
+      const response = await res.json();
+      console.log("Response:", response);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  }
 
   return (
     <>
@@ -48,7 +62,7 @@ function Product() {
                   ></div>
                 ))}
               </div>
-              <button className="bg-yellow-500 p-2 rounded-lg hover:bg-yellow-300 mt-4">Add to Cart</button>
+              <button className="bg-yellow-500 p-2 rounded-lg hover:bg-yellow-300 mt-4" onClick={()=>addToCart(res)}>Add to Cart</button>
             </div>
           </div>
         ))}
