@@ -1,5 +1,5 @@
 import items from "./data";
-import prisma from '../lib/prisma';
+import prisma from '../../lib/prisma';
 
 export default async function handler(req, res) {
   const { id, name } = req.query;

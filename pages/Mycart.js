@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function MyCart() {
   const [products, setProducts] = useState([]);
@@ -37,7 +38,7 @@ export default function MyCart() {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <p>{product.price}</p>
-            <img src={product.image_link} alt={product.name} width={100} />
+            <Image src={product.image_link} alt={product.name} width={300} height={200}/>
           </div>
         ))
       ) : (
