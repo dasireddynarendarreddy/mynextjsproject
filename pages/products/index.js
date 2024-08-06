@@ -9,10 +9,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      console.log(process.env.NEXT_PUBLIC_API_BASE_URL)
       const name = 'notcart';
       try {
-        const res = await fetch(`/api/server?name=${name}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?name=${name}`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -35,7 +34,7 @@ export default function Home() {
 
   const addToCart = async (product) => {
     try {
-      const res = await fetch("/api/server", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
