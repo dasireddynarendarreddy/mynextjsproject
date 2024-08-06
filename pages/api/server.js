@@ -57,6 +57,7 @@ export default async function handler(req, res) {
       if (error.code === 'P2002') {
         res.status(200).json({ status: "alreadyadded" });
       } else {
+          console.log(error)
         res.status(500).json({ error: 'Internal server error' });
       }
     }
