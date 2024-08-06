@@ -3,7 +3,7 @@ import prisma from '../../lib/prisma';
 import cors from 'cors';
 import initMiddleware from '../../lib/init-middleware';
 
-const cors = initMiddleware(
+const corsMiddleware = initMiddleware(
   cors({
     methods: ['GET', 'POST', 'OPTIONS'],
     origin: '*', // Adjust to your needs (e.g., `https://your-frontend-domain.com`)
@@ -11,6 +11,7 @@ const cors = initMiddleware(
 );
 
 export default async function handler(req, res) {
+  await corsMiddleware(req, res);
   const { id, name } = req.query;
 
   console.log('Request Method:', req.method);
