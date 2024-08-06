@@ -11,7 +11,7 @@ function Product() {
     const fetchData = async () => {
       const get = await fetch(`/api/server?id=${num}`);
       const response = await get.json();
-      setData(response);
+               setData([response.data])
       console.log(response);
     };
     if (num) {
@@ -68,6 +68,8 @@ function Product() {
         ))}
         
       </div>
+    
+  
     </>
   );
 }

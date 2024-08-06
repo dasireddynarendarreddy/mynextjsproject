@@ -19,12 +19,12 @@ export default async function handler(req, res) {
   console.log('Request Body:', req.body);
 
   if (req.method === 'GET') {
-    if (id !== undefined) {
+    if (id != undefined) {
       const itemId = parseInt(id);
       if (isNaN(itemId) || itemId < 1 || itemId > items.length) {
         res.status(404).json({ error: 'Item not found' });
       } else {
-        res.status(200).json([items[itemId - 1]]);
+        res.status(200).json({data:items[itemId - 1]});
       }
     
     } else if (req.method=='GET') {
