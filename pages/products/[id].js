@@ -9,7 +9,7 @@ function Product() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const get = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?id=${num}`);
+      const get = await fetch(`/api/server?id=${num}`);
       const response = await get.json();
       setData(response);
       console.log(response);

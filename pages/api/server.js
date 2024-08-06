@@ -26,9 +26,8 @@ export default async function handler(req, res) {
       } else {
         res.status(200).json([items[itemId - 1]]);
       }
-    } else if (name === 'notcart') {
-      res.status(200).json(items);
-    } else if (name === 'cart') {
+    
+    } else if (req.method=='GET') {
       try {
         const products = await prisma.cart.findMany();
         res.status(200).json(products);
