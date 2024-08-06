@@ -12,7 +12,7 @@ const corsMiddleware = initMiddleware(
 
 export default async function handler(req, res) {
   await corsMiddleware(req, res);
-  const { id, name } = req.query;
+  const { id} = req.query;
 
   console.log('Request Method:', req.method);
   console.log('Query Parameters:', req.query);
