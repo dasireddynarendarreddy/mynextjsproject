@@ -1,4 +1,4 @@
-import items from "./data";
+import items from './data';
 import prisma from '../../lib/prisma';
 import cors from 'cors';
 import initMiddleware from '../../lib/init-middleware';
@@ -6,28 +6,25 @@ import initMiddleware from '../../lib/init-middleware';
 const corsMiddleware = initMiddleware(
   cors({
     methods: ['GET', 'POST', 'OPTIONS'],
-    origin: 'https://mynextjsproject-bc3a-mu65nzxau-narendars-projects.vercel.app', // Adjust to your needs (e.g., `https://your-frontend-domain.com`)
+    origin: 'https://mynextjsproject-bc3a-mu65nzxau-narendars-projects.vercel.app', // Adjust to your needs
   })
 );
 
 export default async function handler(req, res) {
   await corsMiddleware(req, res);
-  const { id} = req.query;
+  const { id } = req.query;
 
-  console.log('Request Method:', req.method);
-  console.log('Query Parameters:', req.query);
-  console.log('Request Body:', req.body);
+  console.log('id in backend', id); // Check if this logs correctly
 
   if (req.method === 'GET') {
-    if (id != undefined) {
+    if (id !== undefined) {
       const itemId = parseInt(id);
       if (isNaN(itemId) || itemId < 1 || itemId > items.length) {
         res.status(404).json({ error: 'Item not found' });
       } else {
-        res.status(200).json({data:items[itemId - 1]});
+        res.status(200).json({ data: items[itemId - 1] });
       }
-    
-    } else if (req.method=='GET') {
+    } else {
       try {
         const products = await prisma.cart.findMany();
         res.status(200).json(products);
@@ -37,8 +34,6 @@ export default async function handler(req, res) {
       } finally {
         await prisma.$disconnect();
       }
-    } else {
-      res.status(400).json({ error: 'Invalid query parameters' });
     }
   } else if (req.method === 'POST') {
     const { product_id, name, description, price, image_link, category, sizes, colors } = req.body;
@@ -50,7 +45,7 @@ export default async function handler(req, res) {
     try {
       const newCart = await prisma.cart.create({
         data: {
-          product_id, // Corrected here
+          product_id,
           name,
           description,
           price,
@@ -62,11 +57,10 @@ export default async function handler(req, res) {
       });
       res.status(201).json(newCart);
     } catch (error) {
-      
       if (error.code === 'P2002') {
-        res.status(200).json({ status: "alreadyadded" });
+        res.status(200).json({ status: 'alreadyadded' });
       } else {
-          console.log(error)
+        console.log(error);
         res.status(500).json({ error: 'Internal server error' });
       }
     }
