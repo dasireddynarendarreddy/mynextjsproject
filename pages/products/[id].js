@@ -12,7 +12,7 @@ function Product() {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/server?id=${id}`); // Ensure leading slash
+        const response = await fetch(`/api/server?num=${id}`); // Ensure leading slash
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

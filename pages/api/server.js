@@ -12,17 +12,17 @@ const corsMiddleware = initMiddleware(
 
 export default async function handler(req, res) {
   await corsMiddleware(req, res);
-  const { id } = req.query;
+  const { num} = req.query;
 
-  console.log('id in backend', id); // Check if this logs correctly
+  console.log('id in backend', num); // Check if this logs correctly
 
   if (req.method === 'GET') {
-    if (id !== undefined) {
-      const itemId = parseInt(id);
+    if (num !== undefined) {
+      const itemId = parseInt(num);
       if (isNaN(itemId) || itemId < 1 || itemId > items.length) {
         res.status(404).json({ error: 'Item not found' });
       } else {
-        res.status(200).json({ data: items[itemId - 1] });
+        res.status(200).json({ data: items[itemId- 1] });
       }
     } else {
       try {
