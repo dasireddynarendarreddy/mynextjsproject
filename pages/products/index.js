@@ -25,8 +25,7 @@ export default function Home() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  
 
   return (
     <div className="p-8">
