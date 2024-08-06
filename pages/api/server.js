@@ -6,7 +6,7 @@ import initMiddleware from '../../lib/init-middleware';
 const corsMiddleware = initMiddleware(
   cors({
     methods: ['GET', 'POST', 'OPTIONS'],
-    origin: 'https://mynextjsproject-bc3a-mu65nzxau-narendars-projects.vercel.app', // Adjust to your needs
+    origin: 'https://mynextjsproject-phi.vercel.app/', // Adjust to your needs
   })
 );
 
