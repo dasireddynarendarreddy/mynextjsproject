@@ -11,7 +11,7 @@ export default function Home() {
     const fetchItems = async () => {
       const name = 'notcart';
       try {
-        const res = await fetch(`/api/server?name=${name}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?name=${name}`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
