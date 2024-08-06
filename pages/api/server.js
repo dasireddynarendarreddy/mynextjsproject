@@ -1,5 +1,14 @@
 import items from "./data";
 import prisma from '../../lib/prisma';
+import cors from 'cors';
+import initMiddleware from '../../lib/init-middleware';
+
+const cors = initMiddleware(
+  cors({
+    methods: ['GET', 'POST', 'OPTIONS'],
+    origin: '*', // Adjust to your needs (e.g., `https://your-frontend-domain.com`)
+  })
+);
 
 export default async function handler(req, res) {
   const { id, name } = req.query;
