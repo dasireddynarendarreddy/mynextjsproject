@@ -10,7 +10,7 @@ export default function MyCart() {
     async function fetchProducts() {
         const value="cart"
       try {
-        const response = await fetch(`/api/server?name=${value}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?name=${value}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
