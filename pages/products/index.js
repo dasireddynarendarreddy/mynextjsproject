@@ -5,8 +5,8 @@ import items from "../api/data"
 
 export default function Home() {
   
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
+  
     const router=useRouter()
   
   const addToCart = async (product) => {
