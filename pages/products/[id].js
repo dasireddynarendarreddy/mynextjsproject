@@ -2,73 +2,57 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-function Product() {
+
+
+const ProductPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [data, setData] = useState([]);
-  
+
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    if (!id) return;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/server?num=${id}`); // Ensure leading slash
-        
-        const result = await response.json();
-        console.log(result)
-        setData([result.data]);
-      } catch (error) {
-        console.error('Failed to fetch product:', error);
-      }
-    };
-
-    fetchData();
+    if (id) {
+      const fetchProduct = async () => {
+        try {
+          setLoading(true);
+          const response = await fetch(`/api/server?num=${id}`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const result = await response.json();
+          setProduct(result);
+          console.log(result)
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchProduct();
+    }
   }, [id]);
 
-  const addToCart = async (product) => {
-    try {
-      const res = await fetch('/api/server', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product),
-      });
-      const response = await res.json();
-      console.log("Response:", response);
-    } catch (error) {
-      console.error("Failed to add to cart:", error);
-    }
-  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!product) return <p>No product found</p>;
 
   return (
-    <div className="bg-gray-200">
-      <button onClick={() => router.push("/products")} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
-      {data.map((res) => (
-        <div key={res.id} className="flex items-center justify-center h-screen">
-          <div className="text-center">
-            <Image src={res.image_link} alt="Your Image" width={500} height={300} />
-            <h3 className="font-extrabold">Name: {res.name}</h3>
-            <br />
-            <span>Category:</span>
-            <span className="bg-green-300 font-bold p-2 rounded-lg">{res.category}</span>
-            <p className="mt-4">{res.description}</p>
-            <div className="flex space-x-2 mt-4">
-              <span className="font-extrabold">Colors:</span>
-              {res.colors.map((col, index) => (
-                <div
-                  key={index}
-                  className="w-10 h-10 rounded-md border-2 border-solid"
-                  style={{ backgroundColor: col }}
-                ></div>
-              ))}
-            </div>
-            <button className="bg-yellow-500 p-2 rounded-lg hover:bg-yellow-300 mt-4" onClick={() => addToCart(res)}>Add to Cart</button>
-          </div>
-        </div>
-      ))}
-    </div>
+    <div>
+      <button className='bg-blue-700 rounded-lg p-4' onClick={()=>router.push("/products")}>previous</button>
+    <div className="flex justify-center items-center h-screen">
+      
+  <div className="text-center">
+    <h1>{product.name}</h1>
+    <p>{product.description}</p>
+    <Image src={product.image_link} width={500} height={300} className='rounded-lg' alt={product.name} />
+    <p>Colors: {product.colors}</p>
+    <p>Sizes: {product.sizes}</p>
+  </div>
+</div>
+</div>
   );
-}
+};
 
-export default Product;
+export default ProductPage;

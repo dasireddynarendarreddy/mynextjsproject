@@ -3,7 +3,7 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+//directUrl = env("DIRECT_URL")
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,7 +14,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Cart {
+model cart {
   id          Int    @id @default(autoincrement())
   product_id  Int    @unique
   name        String
@@ -24,4 +24,15 @@ model Cart {
   category    String
   sizes       Json
   colors      Json
+}
+
+model addToCart {
+  product_id  Int      @unique
+  name        String
+  description String
+  price       String
+  image_link  String
+  category    String
+  colors      String[] // Array of strings
+  sizes       String[] // Array of strings
 }

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import items from "../api/data"
-
+import { useEffect } from 'react';
 export default function Home() {
   
   
@@ -24,7 +24,7 @@ export default function Home() {
       console.error("Failed to add to cart:", error);
     }
   };
-
+ 
   
 
   return (

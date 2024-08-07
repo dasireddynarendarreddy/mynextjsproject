@@ -3,69 +3,93 @@ import prisma from '../../lib/prisma';
 import cors from 'cors';
 import initMiddleware from '../../lib/init-middleware';
 
-const corsMiddleware = initMiddleware(
+/*const corsMiddleware = initMiddleware(
   cors({
     methods: ['GET', 'POST', 'OPTIONS'],
     origin: 'https://mynextjsproject-phi.vercel.app/', // Adjust to your needs
   })
-);
+);*/
+
+{/*export default async function handler(req, res) {
+  await corsMiddleware(req, res);
+  const {num}=req.query;
+    console.log(num)
+  
+  if(req.method==='GET')
+  {
+     try{
+       const result=await prisma.Cart.findMany()
+       res.status(200).json(result)
+     }
+     catch(error)
+     {
+       res.status(500).json(error)
+
+     }
+          
+  }
+
+
+   // Check if this logs correctly
+
+}*/}
+
+
 
 export default async function handler(req, res) {
-  await corsMiddleware(req, res);
-  const { num} = req.query;
-
-  console.log('id in backend', num); // Check if this logs correctly
+  const { num } = req.query;
 
   if (req.method === 'GET') {
-    if (num !== undefined) {
-      const itemId = parseInt(num);
-      if (isNaN(itemId) || itemId < 1 || itemId > items.length) {
-        res.status(404).json({ error: 'Item not found' });
-      } else {
-        res.status(200).json({data:items[itemId- 1] });
-      }
-    } else {
-      try {
-        const products = await prisma.cart.findMany();
-        res.status(200).json(products);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        res.status(500).json({ error: 'Error fetching products' });
-      } finally {
-        await prisma.$disconnect();
-      }
-    }
-  } else if (req.method === 'POST') {
-    const { product_id, name, description, price, image_link, category, sizes, colors } = req.body;
+    if(num===undefined)
+    {
+    try {
+      const product = await prisma.addToCart.findMany();
 
-    if (!product_id || !name || !description || !price || !image_link || !category || !sizes || !colors) {
-      return res.status(400).json({ error: 'All fields are required' });
+      res.status(200).json(product);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
+  }
+  else{
+     res.status(200).json(items[num-1])
+  }
+  } else if (req.method === 'POST') {
+    const {
+      product_id,
+      name,
+      description,
+      price,
+      image_link,
+      category,
+      sizes,
+      colors
+    } = req.body;
 
     try {
-      const newCart = await prisma.cart.create({
+   await prisma.addToCart.create({
         data: {
           product_id,
           name,
           description,
-          price,
+          price,  // Ensure price is a float
           image_link,
           category,
-          sizes: JSON.stringify(sizes),
-          colors: JSON.stringify(colors),
+          sizes,
+          colors
         },
       });
-      res.status(201).json(newCart);
+
+      res.status(201).json({staus:"addedtocart"});
     } catch (error) {
-      if (error.code === 'P2002') {
-        res.status(200).json({ status: 'alreadyadded' });
-      } else {
-        console.log(error);
-        res.status(500).json({ error: 'Internal server error' });
-      }
+      console.log("the error code is",error.code)
+       if(error.code==='P2002')
+       {
+        res.status(200).json({ status: 'addedtocart' });
+       }
+       else{
+      res.status(500).json({ error: 'Internal Server Error' });
+       }
     }
-  } else {
-    res.setHeader('Allow', ['GET', 'POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

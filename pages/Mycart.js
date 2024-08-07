@@ -34,7 +34,7 @@ export default function MyCart() {
       <h1>My Cart</h1>
       {products.length > 0 ? (
         products.map((product) => (
-          <div key={product.id}>
+          <div key={product.product_id}>
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <p>{product.price}</p>
