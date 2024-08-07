@@ -15,6 +15,7 @@ function Product() {
         const response = await fetch(`/api/server?num=${id}`); // Ensure leading slash
         
         const result = await response.json();
+        console.log(result)
         setData([result.data]);
       } catch (error) {
         console.error('Failed to fetch product:', error);
