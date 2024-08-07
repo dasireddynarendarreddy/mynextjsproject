@@ -17,7 +17,8 @@ const ProductPage = () => {
       const fetchProduct = async () => {
         try {
           setLoading(true);
-          const response = await fetch(`/api/server?num=${id}`);
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?num=${id}`);
+        
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }

@@ -3,12 +3,12 @@ import prisma from '../../lib/prisma';
 import cors from 'cors';
 import initMiddleware from '../../lib/init-middleware';
 
-/*const corsMiddleware = initMiddleware(
+const corsMiddleware = initMiddleware(
   cors({
     methods: ['GET', 'POST', 'OPTIONS'],
     origin: 'https://mynextjsproject-phi.vercel.app/', // Adjust to your needs
   })
-);*/
+);
 
 {/*export default async function handler(req, res) {
   await corsMiddleware(req, res);
@@ -37,6 +37,7 @@ import initMiddleware from '../../lib/init-middleware';
 
 
 export default async function handler(req, res) {
+  await corsMiddleware(req, res);
   const { num } = req.query;
 
   if (req.method === 'GET') {
