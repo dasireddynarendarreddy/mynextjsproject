@@ -7,7 +7,7 @@ const cors = initMiddleware(
   Cors({
     // Only allow requests with these methods
     methods: ['GET', 'POST', 'OPTIONS'],
-    origin: 'https://mynextjsproject-bc3a.vercel.app' // Adjust to your needs
+    origin: 'https://mynextjsproject-phi.vercel.app/products' // Adjust to your needs
   })
 );
 
