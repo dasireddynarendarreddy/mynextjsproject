@@ -2,13 +2,13 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import items from "../api/data"
-import { useEffect } from 'react';
+
 export default function Home() {
   
   
   
     const router=useRouter()
-  console.log(process.env.NEXT_PUBLIC_API_BASE_URL)
+  
   const addToCart = async (product) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL/api/server}`, {
