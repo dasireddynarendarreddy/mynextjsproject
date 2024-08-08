@@ -10,6 +10,7 @@ export default function Home() {
     const router=useRouter()
   
   const addToCart = async (product) => {
+    console.log("adding to database...",product);
     try {
       const res = await fetch('api/server', {
         method: 'POST',
@@ -21,7 +22,7 @@ export default function Home() {
         },
         body: JSON.stringify(product),
       });
-      const response = await res.json();
+      
       console.log("Response:", response);
     } catch (error) {
       console.error("Failed to add to cart:", error);
