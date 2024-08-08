@@ -23,7 +23,7 @@ export default function Home() {
         body: JSON.stringify(product),
       });
       
-      console.log("Response:", response);
+      
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }
