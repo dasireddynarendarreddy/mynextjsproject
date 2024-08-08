@@ -11,7 +11,7 @@ export default function Home() {
   
   const addToCart = async (product) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL/api/server}`, {
+      const res = await fetch('api/server', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
