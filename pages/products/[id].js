@@ -17,7 +17,7 @@ const ProductPage = () => {
           setLoading(true);
 
           // Adding CORS-related headers to the fetch request
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?num=${id}`, {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/server?num=${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
