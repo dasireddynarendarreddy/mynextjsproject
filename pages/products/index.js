@@ -17,7 +17,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*', // Allow requests from any origin
-          'Access-Control-Allow-Methods': 'POST', // Allow the necessary methods
+          'Access-Control-Allow-Method': 'POST', // Allow the necessary methods
           //'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Specify which headers are allowed*/
         },
         body: JSON.stringify(product), 
