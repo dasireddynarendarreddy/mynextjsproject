@@ -12,17 +12,18 @@ export default function Home() {
   const addToCart = async (product) => {
     console.log("adding to database...",product);
     try {
-      const res = await fetch('api/server', {
+      await fetch('/api/server', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+          /*'Access-Control-Allow-Origin': '*', // Allow requests from any origin
           'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // Allow the necessary methods
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Specify which headers are allowed
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Specify which headers are allowed*/
         },
-        body: JSON.stringify(product),
-      });
-      
+        body: JSON.stringify(product), 
+      }).then(response => response.json())
+      .then(data => console.log(data))
+     
       
     } catch (error) {
       console.error("Failed to add to cart:", error);

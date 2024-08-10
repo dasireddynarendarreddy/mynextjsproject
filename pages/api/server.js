@@ -1,6 +1,7 @@
 import prisma from '../../lib/prisma';
 import Cors from 'cors';
 import initMiddleware from '../../lib/init-middleware';
+import items from './data';
 
 // Initialize the CORS middleware
 const cors = initMiddleware(
@@ -16,7 +17,9 @@ export default async function handler(req, res) {
   await cors(req, res);
 
   const { num } = req.query;
-
+  console.log('Request method:', req.method);
+  console.log('Request body:', req.body);
+  
   if (req.method === 'GET') {
     if (num === undefined) {
       try {
@@ -45,6 +48,7 @@ export default async function handler(req, res) {
           colors,
         },
       });
+      
 
       res.status(201).json({ status: 'addedtocart' });
     } catch (error) {
