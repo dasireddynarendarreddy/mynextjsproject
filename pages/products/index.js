@@ -12,7 +12,7 @@ export default function Home() {
   const addToCart = async (product) => {
     console.log("adding to database...",product);
     try {
-      await fetch('/api/server', {
+      await fetch('api/server', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
