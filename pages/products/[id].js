@@ -20,7 +20,7 @@ const ProductPage = () => {
           const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/server?num=${id}`, {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
+             
               'Access-Control-Allow-Origin': '*', // Allow requests from any origin
               'Access-Control-Allow-Methods': 'GET', // Allow the necessary methods
               'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Specify which headers are allowed
