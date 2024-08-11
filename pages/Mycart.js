@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-
+import { useRouter } from 'next/navigation';
 export default function MyCart() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const router=useRouter()
   useEffect(() => {
     async function fetchProducts() {
       
@@ -25,21 +25,48 @@ export default function MyCart() {
 
     fetchProducts();
   }, []);
-
-  if (loading) return <div  class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+  const removeItem = async (item) => {
+    try {
+      const response = await fetch(`/api/removeitem`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name:item}),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const result = await response.json();
+      if(result.deletedItem.count>0)
+      {
+        router.refresh()
+      }
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
+  };
+  if (loading) return <div  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
-      <h1>My Cart</h1>
+    <div className="flex flex-wrap gap-2 m-0 p-4">
+    
       {products.length > 0 ? (
         products.map((product) => (
-          <div key={product.product_id}>
+          <div key={product.product_id} className='m-0'>
             <h2>{product.name}</h2>
-            <p>{product.description}</p>
+           
             <p>{product.price}</p>
             <Image src={product.image_link} alt={product.name} width={300} height={200}/>
-          </div>
+            <button className='bg-yellow-400 rounded-lg p-2' onClick={()=>removeItem(product.name)}>RemoveItem</button>
+           </div>
+           
+           
+           
+         
         ))
       ) : (
         <p>No products found.</p>
