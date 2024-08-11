@@ -44,7 +44,7 @@ const ProductPage = () => {
     }
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className="border-2 w-6 h-6 border-solid rounded-xl animate-spin border-cyan-300 border-x-white"></div>;
   if (error) return <p>Error: {error.message}</p>;
   if (!product) return <p>No product found</p>;
 
