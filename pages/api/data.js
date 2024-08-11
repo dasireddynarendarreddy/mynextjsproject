@@ -5,7 +5,7 @@ const items = [
     description: "Comfortable and stylish running shoes.",
     price: "$120",
     image_link: "https://preview.redd.it/0k09tgr01o421.jpg?auto=webp&s=3a3a09348b199bd7be8448fae4d97400bd263ca8",
-    category: "Running Shoes",
+   category: "Running Shoes",
     sizes: ["7", "8", "9", "10", "11"],
     colors: ["Black", "White", "Red"]
   },

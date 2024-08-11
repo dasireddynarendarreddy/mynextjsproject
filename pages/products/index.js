@@ -1,36 +1,62 @@
 
+
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import items from "../api/data"
+import items from "../api/data";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
+
 
 export default function Home() {
   
+  const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  const[response,setresponse]=React.useState("adding to cart")
   
-  
-    const router=useRouter()
-  
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
   const addToCart = async (product) => {
-    console.log("adding to database...",product);
+    console.log("adding to database...", product);
     try {
-      await fetch('api/server', {
+      const response = await fetch('/api/server', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Allow requests from any origin
-          'Access-Control-Allow-Method': 'POST', // Allow the necessary methods
-          //'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Specify which headers are allowed*/
         },
-        body: JSON.stringify(product), 
-      }).then(response => response.json())
-      .then(data => console.log(data))
-     
-      
+        body: JSON.stringify(product),
+      });
+      const data = await response.json();
+        setresponse(data.status)
+        setOpen(true)
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }
   };
- 
-  
 
   return (
     <div className="p-8">
@@ -44,11 +70,19 @@ export default function Home() {
               <p>{product.price}</p>
             </div>
             <div>
-              <button className="bg-yellow-400 rounded p-2 cursor-pointer" onClick={() => addToCart(product)}>Add to Cart</button>
+            <Button onClick={()=>addToCart(product)} className='bg-yellow-300 rounded-xl text-black'>Add To Cart</Button>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={response}
+        action={action}
+      />
             </div>
           </div>
         ))}
       </div>
+      
     </div>
   );
 }
