@@ -10,7 +10,7 @@ export default function MyCart() {
     async function fetchProducts() {
       
       try {
-        const response = await fetch(process.env.NODE==="development"?`htpp://localhost:3000/api/server`:`https://mynextjsproject-phi.vercel.app/api/server`);
+        const response = await fetch('/api/server')
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
