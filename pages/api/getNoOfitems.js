@@ -11,5 +11,9 @@ export default  async function getNoOfItems(req,res)
            {
             res.status(500).json({error:error})
            }
+           finally
+           {
+            await prisma.$disconnect();
+           }
    }
 }

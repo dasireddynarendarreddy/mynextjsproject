@@ -1,22 +1,20 @@
-/** @type {import('next').NextConfig} */
-// next.config.js
-
 const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**",
-      },
+        protocol: 'https',
+        hostname: '**', // Matches any hostname
+        pathname: '**', // Matches any path
+      }
+      
     ],
-    domains: ['cdn-tp2.mozu.com'],
+    domains:["cdn-tp2.mozu.com"]
   },
   async headers() {
     return [
       {
-        // Add a leading slash in the source path
-        source: '/api/:path*', 
+        source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
           { key: 'Access-Control-Allow-Origin', value: '*' },

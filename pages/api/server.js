@@ -52,11 +52,12 @@ export default async function handler(req, res) {
 
       res.status(201).json({ status: 'addedtocart' });
     } catch (error) {
-      console.log("the error code is", error.code);
+      
       if (error.code === 'P2002') {
         res.status(200).json({ status: 'addedtocart' });
       } else {
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.log(error)
+        res.status(500).json({ status: 'Server Error' });
       }
       
     }

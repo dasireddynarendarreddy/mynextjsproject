@@ -19,7 +19,7 @@ export default function Home() {
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return;
+      router.push('/Mycart')
     }
 
     setOpen(false);
@@ -27,7 +27,7 @@ export default function Home() {
   const action = (
     <React.Fragment>
       <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
+       viewcart
       </Button>
       <IconButton
         size="small"
