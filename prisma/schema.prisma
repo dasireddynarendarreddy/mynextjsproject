@@ -30,9 +30,10 @@ model addToCart {
   product_id  Int      @unique
   name        String
   description String
-  price       String
+  price       Int
   image_link  String
   category    String
   colors      String[] // Array of strings
   sizes       String[] // Array of strings
+  rating      Int
 }

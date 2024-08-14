@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-
-
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 export default function Home() {
   
@@ -68,6 +68,7 @@ export default function Home() {
               <Image src={product.image_link} alt={product.description} width={500} height={300} />
               <p>Name: {product.name}</p>
               <p>{product.price}</p>
+              <p>Rtaing <Rating name="read-only" value={4} readOnly /></p>
             </div>
             <div>
             <Button onClick={()=>addToCart(product)} className='bg-yellow-300 rounded-xl text-black'>Add To Cart</Button>

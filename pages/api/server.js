@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       res.status(200).json(items[num - 1]);
     }
   } else if (req.method === 'POST') {
-    const { product_id, name, description, price, image_link, category, sizes, colors } = req.body;
+    const { product_id, name, description, price, image_link, category, sizes, colors,rating } = req.body;
 
     try {
       await prisma.addToCart.create({
@@ -46,6 +46,7 @@ export default async function handler(req, res) {
           category,
           sizes,
           colors,
+          rating
         },
       });
       
