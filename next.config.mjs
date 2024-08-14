@@ -6,7 +6,19 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**', // Matches any hostname
         pathname: '**', // Matches any path
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: '**.lystit.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tse1.mm.bing.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'au.ecco.com',
+      },
       
     ],
     domains:["cdn-tp2.mozu.com"]
