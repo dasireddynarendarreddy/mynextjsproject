@@ -65,7 +65,7 @@ export default function Home() {
         {items.map((product) => (
           <div key={product.product_id}>
             <div className="bg-slate-200 p-4 text-center cursor-pointer rounded-lg object-contain h-auto hover:bg-slate-600 hover:text-white" onClick={() => router.push(`/products/${product.product_id}`)}>
-              <Image src={product.image_link} alt={product.description} width={150} height={75} className="object-cover h-64 w-full" />
+              <Image src={product.image_link} alt={product.description} width={150} height={75} className="object-cover" />
               <p>Name: {product.name}</p>
               <p>{product.price}</p>
               <p>Rtaing <Rating name="read-only" value={4} readOnly /></p>
