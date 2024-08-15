@@ -72,6 +72,7 @@ export default function Home() {
               <p>Name: {product.name}</p>
               <p>{product.price}</p>
               <p>Rtaing <Rating name="read-only" value={4} readOnly /></p>
+              <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>AddToCart</button>
               </div>
             </div>
             <div>
