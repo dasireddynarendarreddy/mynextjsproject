@@ -64,7 +64,7 @@ export default function Home() {
       <div className="flex flex-wrap gap-2 p-1">
         {items.map((product) => (
           <div key={product.product_id}>
-            <div className="flex gap-2 p-4 text-center cursor-pointer rounded-lg object-contain h-auto hover:bg-slate-600 hover:text-white" >
+            <div className="flex gap-2 p-4 text-center cursor-pointer rounded-lg object-contain h-auto" >
               <div>
               <Image src={product.image_link} alt={product.description} width={100} height={75} className="object-cover" onClick={() => router.push(`/products/${product.product_id}`)}/>
              
