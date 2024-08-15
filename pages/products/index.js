@@ -61,7 +61,7 @@ export default function Home() {
   return (
     <div className="p-8">
       <button onClick={() => router.push("/")} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
-      <div className="flex flex-wrap gap-2 p-1">
+      <div className="lg:grid grid-cols-1 flex flex-wrap gap-2 p-1">
         {items.map((product) => (
           <div key={product.product_id}>
             <div className="flex gap-2 p-4 text-center cursor-pointer rounded-lg object-contain h-auto" >
@@ -69,13 +69,15 @@ export default function Home() {
               <Image src={product.image_link} alt={product.description} width={100} height={75} className="object-cover" onClick={() => router.push(`/products/${product.product_id}`)}/>
              
               </div>
-              <div>
+              <div className='font-extrabold'>
               <p>Name: {product.name}</p>
               <p>price:{product.price}$</p>
               <p>Rtaing <Rating name="read-only" value={4} readOnly /></p>
               <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 cursor-pointer' onClick={()=>addToCart(product)}>AddToCart</button>
               </div>
+              
             </div>
+            <div className='md:w-full h-2 bg-slate-300'></div>
             <div>
 
       <Snackbar
