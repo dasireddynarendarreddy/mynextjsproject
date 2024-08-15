@@ -67,13 +67,13 @@ export default function Home() {
             <div className="flex gap-2 p-4 text-center cursor-pointer rounded-lg object-contain h-auto hover:bg-slate-600 hover:text-white" >
               <div>
               <Image src={product.image_link} alt={product.description} width={100} height={75} className="object-cover" onClick={() => router.push(`/products/${product.product_id}`)}/>
-              <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2' onClick={()=>addToCart(product)}>AddToCart</button>
+             
               </div>
               <div>
               <p>Name: {product.name}</p>
-              <p>{product.price}</p>
+              <p>price:{product.price}$</p>
               <p>Rtaing <Rating name="read-only" value={4} readOnly /></p>
-              
+              <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 cursor-pointer' onClick={()=>addToCart(product)}>AddToCart</button>
               </div>
             </div>
             <div>
