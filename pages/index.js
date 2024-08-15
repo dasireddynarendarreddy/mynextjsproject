@@ -11,6 +11,8 @@ function Main()
          const viewProducts=()=>{
               route.push("/products")
          }
+        
+        
     React.useEffect(()=>{
       const get=async()=>{
       const getNoOfItems=await fetch('/api/getNoOfitems');
@@ -18,6 +20,7 @@ function Main()
        setitems(number.noofitems)
       }
        get()
+       
     },[])
     return(
 <div className="p-4 items-center justify-center">

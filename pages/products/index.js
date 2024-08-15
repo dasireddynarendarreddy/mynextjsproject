@@ -61,17 +61,17 @@ export default function Home() {
   return (
     <div className="p-8">
       <button onClick={() => router.push("/")} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
-      <div className="flex flex-wrap gap-1 p-2">
+      <div className="flex flex-wrap gap-2 p-1">
         {items.map((product) => (
           <div key={product.product_id}>
             <div className="bg-slate-200 p-4 text-center cursor-pointer rounded-lg object-contain h-auto hover:bg-slate-600 hover:text-white" onClick={() => router.push(`/products/${product.product_id}`)}>
-              <Image src={product.image_link} alt={product.description} width={300} height={200} />
+              <Image src={product.image_link} alt={product.description} width={150} height={75} className="object-cover h-64 w-full" />
               <p>Name: {product.name}</p>
               <p>{product.price}</p>
               <p>Rtaing <Rating name="read-only" value={4} readOnly /></p>
             </div>
             <div>
-            <Button onClick={()=>addToCart(product)} className='bg-yellow-300 rounded-xl text-black'>Add To Cart</Button>
+            <button onClick={()=>addToCart(product)} className='bg-yellow-500 rounded-xl text-black p-2 hover:bg-yellow-300'>Add To Cart</button>
       <Snackbar
         open={open}
         autoHideDuration={6000}

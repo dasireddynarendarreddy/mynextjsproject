@@ -1,14 +1,61 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 const ProductPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const [product, setProduct] = useState(null);
+  const[response,setresponse]=useState()
+  const[open,setOpen]=useState(false)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const addToCart = async (product) => {
+    console.log("adding to database...", product);
+    try {
+      const response = await fetch('/api/server', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
+      const data = await response.json();
+      console.log(data)
+        setresponse(data.status)
+        setOpen(true)
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      router.push('/Mycart')
+    }
+
+    setOpen(false);
+  };
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+       viewcart
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
 
   useEffect(() => {
     if (id) {
@@ -55,9 +102,18 @@ const ProductPage = () => {
         <div className="text-center">
           <h1>{product.name}</h1>
           <p>{product.description}</p>
-          <Image src={product.image_link} width={500} height={300} className='rounded-lg' alt={product.name} />
+          <Image src={product.image_link} width={500} height={300} className='rounded-lg w-auto h-auto' alt={product.name} />
           <p>Colors: {product.colors}</p>
           <p>Sizes: {product.sizes}</p>
+          <p>Rating:{product.rating}</p>
+          <button className='bg-yellow-400 rounded-lg p-4' onClick={()=>addToCart(product)}>AddToCart</button>
+          <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={response}
+        action={action}
+      />
         </div>
       </div>
     </div>

@@ -4,12 +4,16 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
-        
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol:'https',
+        hostname:"cdna.lystit.com"
       }
       
+       
     ],
-    domains:["cdn-tp2.mozu.com"]
+    
   },
   async headers() {
     return [
