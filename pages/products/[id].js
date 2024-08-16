@@ -4,8 +4,9 @@ import Image from 'next/image';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { Button } from '@mui/material';
 import * as React from 'react';
-import Button from '@mui/material/Button';
+
 const ProductPage = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -106,7 +107,8 @@ const ProductPage = () => {
           <p>Colors: {product.colors}</p>
           <p>Sizes: {product.sizes}</p>
           <p>Rating:{product.rating}</p>
-          <button className='bg-yellow-400 rounded-lg p-4' onClick={()=>addToCart(product)}>AddToCart</button>
+          
+         <button className='bg-yellow-400 rounded-lg p-4' onClick={()=>addToCart(product)}>AddToCart</button>
           <Snackbar
         open={open}
         autoHideDuration={6000}

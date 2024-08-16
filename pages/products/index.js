@@ -9,7 +9,6 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 
 export default function Home() {
   
@@ -65,6 +64,7 @@ export default function Home() {
 
   return (
     <div className="p-8">
+      
       <button onClick={() => router.push("/")} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
       <div className="grid xl:grid-cols-2 md:grid-cols-1 flex-wrap gap-2 p-1">
         {items.map((product) => (

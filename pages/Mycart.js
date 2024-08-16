@@ -1,11 +1,29 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 export default function MyCart() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router=useRouter()
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     async function fetchProducts() {
       
@@ -56,12 +74,36 @@ export default function MyCart() {
     
       {products.length > 0 ? (
         products.map((product) => (
-          <div key={product.product_id} className='p-2 cursor-pointer' onClick={()=>router.push(`/products/${product.product_id}`)}>
+          <div key={product.product_id} className='p-2 cursor-pointer' >
             <h2>{product.name}</h2>
            
             <p>{product.price}</p>
-            <Image src={product.image_link} alt={product.name} width={200} height={100} className='rounded-xl'/>
-            <button className='bg-yellow-400  p-2 font-semibold rounded-xl' onClick={()=>removeItem(product.name)}>RemoveItem</button>
+            <Image src={product.image_link} alt={product.name} width={200} height={100} className='rounded-xl' onClick={()=>router.push(`/products/${product.product_id}`)}/>
+            
+            <Button variant="outlined" className='cursor-pointer' onClick={handleClickOpen}>
+        Remove item
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Remove item From Cart"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+           Are You Sure you Want to Remvoe from cart
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>No</Button>
+          <Button onClick={()=>removeItem(product.name)} autoFocus>
+            Remove
+          </Button>
+        </DialogActions>
+      </Dialog>
            </div>
            
            

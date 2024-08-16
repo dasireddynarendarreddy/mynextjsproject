@@ -4,6 +4,7 @@ import * as React from 'react';
 import Badge from '@mui/material/Badge';
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 function Main()
 {
   const[items,setitems]=React.useState(null)
@@ -36,6 +37,7 @@ function Main()
   <div className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-mono text-slate-600">
     Walk with Confidence: Discover footwear that combines cutting-edge design with unparalleled comfort, making every step a statement
   </div>
+  
 
   <button className="bg-blue-600 rounded-lg p-2 sm:p-3 md:p-4 lg:p-5 mt-4" onClick={viewProducts}>
     View Products
