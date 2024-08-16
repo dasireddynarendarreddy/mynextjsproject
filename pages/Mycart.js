@@ -52,11 +52,11 @@ export default function MyCart() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="grid xl:grid-cols-4 md:grid-cols-2 font-extrabold">
+    <div className="grid grid-cols-1">
     
       {products.length > 0 ? (
         products.map((product) => (
-          <div key={product.product_id} className='m-0'>
+          <div key={product.product_id} className='p-2 cursor-pointer' onClick={()=>router.push(`/products/${product.product_id}`)}>
             <h2>{product.name}</h2>
            
             <p>{product.price}</p>
