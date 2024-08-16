@@ -19,14 +19,19 @@ export default function Home() {
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-      router.push('/Mycart')
+      
     }
 
     setOpen(false);
   };
+  const goToCart=()=>{
+    
+    router.push("/Mycart")
+
+  }
   const action = (
     <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
+      <Button color="secondary" size="small" onClick={()=>goToCart()}>
        viewcart
       </Button>
       <IconButton
@@ -35,7 +40,7 @@ export default function Home() {
         color="inherit"
         onClick={handleClose}
       >
-        <CloseIcon fontSize="small" />
+        <CloseIcon fontSize="small" onClick={handleClose}/>
       </IconButton>
     </React.Fragment>
   );
@@ -61,7 +66,7 @@ export default function Home() {
   return (
     <div className="p-8">
       <button onClick={() => router.push("/")} className="bg-slate-600 font-extrabold text-2xl py-4 px-6 rounded-lg">&#8592;</button>
-      <div className="lg:grid grid-cols-1 flex flex-wrap gap-2 p-1">
+      <div className="grid xl:grid-cols-2 md:grid-cols-1 flex-wrap gap-2 p-1">
         {items.map((product) => (
           <div key={product.product_id}>
             <div className="flex gap-2 p-4 text-center cursor-pointer rounded-lg object-contain h-auto" >

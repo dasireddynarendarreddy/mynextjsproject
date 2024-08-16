@@ -52,7 +52,7 @@ export default function MyCart() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="flex flex-wrap gap-2 m-0 p-4">
+    <div className="grid xl:grid-cols-4 md:grid-cols-2 font-extrabold">
     
       {products.length > 0 ? (
         products.map((product) => (
@@ -60,8 +60,8 @@ export default function MyCart() {
             <h2>{product.name}</h2>
            
             <p>{product.price}</p>
-            <Image src={product.image_link} alt={product.name} width={300} height={200}/>
-            <button className='bg-yellow-400 rounded-lg p-2' onClick={()=>removeItem(product.name)}>RemoveItem</button>
+            <Image src={product.image_link} alt={product.name} width={200} height={100} className='rounded-xl'/>
+            <button className='bg-yellow-400  p-2 font-semibold rounded-xl' onClick={()=>removeItem(product.name)}>RemoveItem</button>
            </div>
            
            
