@@ -40,7 +40,8 @@ price:  70 ,
   image_link:  "https://images.unsplash.com/photo-1491553895911-0055eca6402d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDM2Nzl8MHwxfHNlYXJjaHw0fHxzaG9lc3xlbnwwfHx8fDE3MjM3MDA0OTB8MA&ixlib=rb-4.0.3&q=80&w=400 ",
   category:  " Casual Shoes  ",
   sizes: [  "6  ",  " 7  ",  " 8  ",  " 9  ",  " 10  ",  " 11  "],
-  colors: [  "White  ",  " Grey  "]
+  colors: [  "White  ",  " Grey  "],
+  rating:4
   },
   {
 product_id: 5,
